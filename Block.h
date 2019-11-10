@@ -7,6 +7,7 @@
 #ifndef Block_h
 #define Block_h
 #include <iostream>
+#include <string>
 
 class Block {
 private:
@@ -37,7 +38,7 @@ public:
     void setTimeId(long);
     
     // Methods
-    void generateHash();
+    std::string generateHash();
     void mining(int difficulty);
     
 };

@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include <ctime>
-#include <cstdlib> // Generates random number
+#include <cstdlib>
 #include "BinaryTree.h"
 #include "Block.h"
 
@@ -15,12 +15,12 @@
 int main(int argc, const char * argv[]) {
     Block blocks[100];
     Block genenisBlock { 0, "0", "", 0, std::time(0)};
-    genenisBlock.generateHash();
+    genenisBlock.setHash(genenisBlock.generateHash());
     blocks[0] = genenisBlock;
     
     for(int i {1}; i < sizeof(blocks); i++) {
         Block block = {i, "", blocks[i - 1].getHash(), rand(), 0};
-        block.generateHash();
+        block.setHash(block.generateHash());
         blocks[i] = block;
     }
     
