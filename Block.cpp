@@ -9,6 +9,7 @@
 #include "Block.h"
 #include <iostream>
 #include <string>
+#include <sha256.h>
 
 // Constructors
 Block::Block() {
@@ -95,10 +96,17 @@ std::string Block::generateHash() {
 };
 
 void Block::mining(int difficulty) {
+    std::string diff {""};
+    for(int i {0}; i < difficulty; i++) {
+        diff += "0";
+    }
+    
     while(true) {
-        generateHash();
-        if(this->hash.substr(0, difficulty) == std::to_string(difficulty)) {
-            
+        std::string newHash {generateHash()};
+        if(newHash.substr(0, difficulty) == diff) {
+            hash = newHash;
+            break;
         }
+        this->nonce += 1;
     }
 }

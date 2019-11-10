@@ -13,31 +13,28 @@
 
 //    Block(long ID, std::string hash, std::string previousHash, long nonce, long timeId);
 int main(int argc, const char * argv[]) {
-    Block blocks[100];
+    const int BLOCK_LENGTH = 100;
+    Block blocks[BLOCK_LENGTH];
     Block genenisBlock { 0, "0", "", 0, std::time(0)};
     genenisBlock.setHash(genenisBlock.generateHash());
     blocks[0] = genenisBlock;
     
-    for(int i {1}; i < sizeof(blocks); i++) {
+    for(int i {1}; i < BLOCK_LENGTH; i++) {
         Block block = {i, "", blocks[i - 1].getHash(), rand(), 0};
         block.setHash(block.generateHash());
         blocks[i] = block;
     }
     
-    for(int i {1}; i < sizeof(blocks); i++) {
+    for(int i {1}; i < BLOCK_LENGTH; i++) {
         Block currBlock {blocks[i]};
         currBlock.setNonce(0);
-        currBlock.mining(1);
+        currBlock.mining(3);
+        currBlock.setPrevHash(blocks[i-1].getHash());
     }
     
     
-//    BinaryTree<int>* binaryTree = new BinaryTree<int>();
-//    for (int ii = 1; ii < argc; ii++) {
-//        binaryTree->add(atoi(argv[ii]));
-//    }
-//
-//    int search1 = binaryTree->search(9);
-//    std::cout << "The level for search1 is " << search1 << std::endl;
-//    int search2 = binaryTree->search(12);
-//    std::cout << "The level for search2 is " << search2 << std::endl;
+    BinaryTree<Block>* binaryTree = new BinaryTree<Block>();
+    for (int i = 1; i < BLOCK_LENGTH; i++) {
+        binaryTree->add(blocks[i]);
+    }
 }
