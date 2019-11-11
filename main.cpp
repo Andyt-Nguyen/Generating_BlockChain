@@ -32,7 +32,6 @@ int main(int argc, const char * argv[]) {
         currBlock.setPrevHash(blocks[i-1].getHash());
     }
     
-    
     BinaryTree<Block>* binaryTree = new BinaryTree<Block>();
     for (int i = 1; i < BLOCK_LENGTH; i++) {
         binaryTree->add(blocks[i]);
