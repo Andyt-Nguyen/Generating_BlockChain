@@ -9,7 +9,7 @@
 #include "Block.h"
 #include <iostream>
 #include <string>
-#include <sha256.h>
+#include "sha256.h"
 
 // Constructors
 Block::Block() {
@@ -90,7 +90,6 @@ std::string Block::generateHash() {
     std::string strNonce = std::to_string(this->nonce);
     std::string strTimeId = std::to_string(this->timeId);
     std::string combine = strId + strNonce + strTimeId;
-    std::cout << combine << std::endl;
 //    std::size_t str_hash = std::hash<std::string>{}(combine);
     return sha256(combine);
 };

@@ -7,6 +7,7 @@
 //
 
 #pragma once
+#include <iostream>
 #include "TreeNode.h"
 template <typename T>
 class BinaryTree

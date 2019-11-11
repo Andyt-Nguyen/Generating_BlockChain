@@ -26,14 +26,16 @@ int main(int argc, const char * argv[]) {
     }
     
     for(int i {1}; i < BLOCK_LENGTH; i++) {
-        Block currBlock {blocks[i]};
-        currBlock.setNonce(0);
-        currBlock.mining(3);
-        currBlock.setPrevHash(blocks[i-1].getHash());
+        Block *currBlock {&blocks[i]};
+        currBlock->setNonce(0);
+        currBlock->mining(3);
+        currBlock->setPrevHash(blocks[i-1].getHash());
     }
     
     BinaryTree<Block>* binaryTree = new BinaryTree<Block>();
     for (int i = 1; i < BLOCK_LENGTH; i++) {
         binaryTree->add(blocks[i]);
     }
+
+    binaryTree->printPreOrder();
 }
