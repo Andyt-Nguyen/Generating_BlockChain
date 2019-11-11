@@ -25,7 +25,6 @@ private:
     void add(T inputData, TreeNode<T> *childNode);
     int search(T inputData, TreeNode<T> *childNode);
     void printPreOrder(TreeNode<T> *childNode);
-    void printBreadthFirst(TreeNode<T> *childNode, int level);
     
 };
 
@@ -65,7 +64,7 @@ inline void BinaryTree<T>::printPreOrder() {
 template<typename T>
 inline void BinaryTree<T>::printBreadthFirst() {
     if (root != nullptr) {
-        printPreOrder(root, 1);
+        printPreOrder(root);
     }
 }
 
