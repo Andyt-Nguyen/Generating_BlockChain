@@ -20,7 +20,6 @@ public:
 template<typename T>
 inline TreeNode<T>::TreeNode()
 {
-    this->data = 0;
     this->left = nullptr;
     this->right = nullptr;
 }
