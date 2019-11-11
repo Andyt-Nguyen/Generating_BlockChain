@@ -86,10 +86,8 @@ void Block::setTimeId(long timeId) {
 
 // Methods
 std::string Block::generateHash() {
-    std::string strId = std::to_string(this->ID);
     std::string strNonce = std::to_string(this->nonce);
-    std::string strTimeId = std::to_string(this->timeId);
-    std::string combine = strId + strNonce + strTimeId;
+    std::string combine = previousHash + strNonce;
 //    std::size_t str_hash = std::hash<std::string>{}(combine);
     return sha256(combine);
 };
