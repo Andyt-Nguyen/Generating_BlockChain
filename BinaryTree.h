@@ -7,7 +7,6 @@
 //
 
 #pragma once
-#include <iostream>
 #include "TreeNode.h"
 template <typename T>
 class BinaryTree
@@ -26,6 +25,7 @@ private:
     void add(T inputData, TreeNode<T> *childNode);
     int search(T inputData, TreeNode<T> *childNode);
     void printPreOrder(TreeNode<T> *childNode);
+    void printBreadthFirst(TreeNode<T> *childNode);
     
 };
 
@@ -106,12 +106,8 @@ inline int BinaryTree<T>::search(T inputData, TreeNode<T>* childNode) {
         }
     }
     
-    if (returnVal == -1) {
-        return returnVal;
-    }
-    else {
-        return returnVal + 1;
-    }
+    if (returnVal == -1) return returnVal;
+    else return returnVal + 1;
 }
 
 template<typename T>
@@ -128,6 +124,43 @@ inline void BinaryTree<T>::printPreOrder(TreeNode<T>* childNode) {
     printPreOrder(childNode->left);
     printPreOrder(childNode->right);
     
+}
+
+template<typename T>
+inline void BinaryTree<T>::printBreadthFirst(TreeNode<T> *childNode) {
+    int h = height(childNode);
+    for (int i = 1; i <= h; i++)
+        printGivenLevel(childNode, i);
+}
+
+template<typename T>
+void printLvl(TreeNode<T> *childNode, int level) {
+    if (childNode == NULL) return;
+    if (level == 1) {
+        std::cout
+        << childNode->data.getId()
+        << ":"
+        << childNode->data.getNonce()
+        << ":"
+        << childNode->data.getHash()
+        << std::endl;
+    }
+    else if (level > 1) {
+        printLvl(childNode->left, level - 1);
+        printLvl(childNode->right, level - 1);
+    }
+}
+
+template<typename T>
+int height(TreeNode<T> node) {
+    if (node == NULL) return 0;
+    else {
+        int lheight = height(node->left);
+        int rheight = height(node->right);
+        
+        if (lheight > rheight) return(lheight + 1);
+        else return(rheight + 1);
+    }
 }
 
 
